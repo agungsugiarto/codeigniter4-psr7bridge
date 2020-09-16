@@ -1,0 +1,36 @@
+{
+    "name": "agungsugiarto/codeigniter4-psr7bridge",
+    "description": "CodeIgniter 4 PSR HTTP message bridge",
+    "keywords": ["codeigniter4", "http", "psr-7", "psr-17", "http-message", "http-factory"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Agung Sugiarto",
+            "email": "me.agungsugiarto@tgmail.com",
+            "homepage": "https://agungsugiarto.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "codeigniter4/framework": "^4.0",
+        "slim/psr7": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeIgniter\\Psr7Bridge\\": "src"
+        }
+    },
+    "require-dev": {
+        "adriansuter/php-autoload-override": "^1.2",
+        "php-http/psr7-integration-tests": "^1.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CodeIgniter\\Psr7Bridge\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testdox --colors=always"
+    }
+}

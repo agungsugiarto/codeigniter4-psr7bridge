@@ -14,23 +14,29 @@
     "require": {
         "php": "^7.2",
         "codeigniter4/framework": "^4.0",
-        "slim/psr7": "^1.2"
+        "psr/http-message": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "CodeIgniter\\Psr7Bridge\\": "src"
         }
     },
-    "require-dev": {
-        "adriansuter/php-autoload-override": "^1.2",
-        "php-http/psr7-integration-tests": "^1.0"
-    },
     "autoload-dev": {
         "psr-4": {
             "CodeIgniter\\Psr7Bridge\\Tests\\": "tests"
         }
     },
+    "require-dev": {
+        "slim/psr7": "^1.2",
+        "adriansuter/php-autoload-override": "^1.2",
+        "php-http/psr7-integration-tests": "^1.0"
+    },
     "scripts": {
         "test": "phpunit --testdox --colors=always"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
     }
 }

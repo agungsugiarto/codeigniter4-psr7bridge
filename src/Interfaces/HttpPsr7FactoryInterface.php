@@ -21,7 +21,7 @@ interface HttpPsr7FactoryInterface
     public function createRequest(IncomingRequest $requestCodeIgniter);
 
     /**
-     * Creates a Symfony Response instance from a PSR-7 one.
+     * Creates a CodeIgniter 4 Response instance from a PSR-7.
      * 
      * @param CodeIgniter\HTTP\Response $responseCodeIgniter
      * @return \PSR\Http\Message\ResponseInterface

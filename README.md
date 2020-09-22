@@ -10,7 +10,7 @@ by the [PSR-7](http://www.php-fig.org/psr/psr-7/).
 
 - <a href="#installation">Installation</a>
 - <a href="#usage">Usage</a>
-    - <a href="converting-from-incomingrequest-objects-to-psr-7">Converting from IncomingRequest Objects to PSR-7</a>
+    - <a href="#converting-from-incomingrequest-objects-to-psr-7">Converting from IncomingRequest Objects to PSR-7</a>
 
 ## Installation
 
@@ -27,7 +27,6 @@ $ composer require nyholm/psr7
 
 ## Usage
 ### Converting from IncomingRequest Objects to PSR-7
----------------------------------------------------
 
 The bridge provides an interface of a factory called
 ``CodeIgniter\Psr7Bridge\Interfaces\HttpPsr7FactoryInterface``

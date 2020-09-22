@@ -79,12 +79,13 @@ class HttpPsr7Factory implements HttpPsr7FactoryInterface
             ? $this->streamFactory->createStreamFromResource('php://memory', 'wb+')
             : $requestCodeIgniter->getBody();
 
-        return $request
+        $request = $request
             ->withBody($body)
             ->withCookieParams($requestCodeIgniter->getCookie())
             ->withQueryParams($requestCodeIgniter->uri->getSegments())
             ->withParsedBody($requestCodeIgniter->getVar());
 
+        return $request;
     }
 
     /**
@@ -108,6 +109,8 @@ class HttpPsr7Factory implements HttpPsr7FactoryInterface
             $response = $response->withHeader($name, $value->getValue());
         }
 
-        return $response->withProtocolVersion($responseCodeIgniter->getProtocolVersion());
+        $response = $response->withProtocolVersion($responseCodeIgniter->getProtocolVersion());
+
+        return $response;
     }
 }

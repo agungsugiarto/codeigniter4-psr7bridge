@@ -1,5 +1,10 @@
 # CodeIgniter4 PSR-7 Bridge
 
+[![Latest Stable Version](https://poser.pugx.org/agungsugiarto/codeigniter4-psr7bridge/v)](https://packagist.org/packages/agungsugiarto/codeigniter4-psr7bridge)
+[![Total Downloads](https://poser.pugx.org/agungsugiarto/codeigniter4-psr7bridge/downloads)](https://packagist.org/packages/agungsugiarto/codeigniter4-psr7bridge)
+[![Latest Unstable Version](https://poser.pugx.org/agungsugiarto/codeigniter4-psr7bridge/v/unstable)](https://packagist.org/packages/agungsugiarto/codeigniter4-psr7bridge)
+[![License](https://poser.pugx.org/agungsugiarto/codeigniter4-psr7bridge/license)](https://packagist.org/packages/agungsugiarto/codeigniter4-psr7bridge)
+
 ## The PSR-7 Bridge
 
 > The PSR-7 bridge converts [codeigniter4-http](https://codeigniter4.github.io/userguide/incoming/message.html)

@@ -44,14 +44,14 @@ to a ``Nyholm\Psr7\ServerRequest`` class implementing the
 ```php
 <?php
 
-use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\Config\Services;
 use CodeIgniter\Psr7Bridge\HttpPsr7Factory;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
-$requestCodeIgniter = new IncomingRequest(config('App'));
+$requestCodeIgniter = Services::request();
 
 $psr17Factory = new Psr17Factory();
-$psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+$psrHttpFactory = new HttpPsr7Factory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
 $psrRequest = $psrHttpFactory->createRequest($requestCodeIgniter);
 ```
 
@@ -69,7 +69,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 $responseCodeIgniter = new Response(config('App'));
 
 $psr17Factory = new Psr17Factory();
-$psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+$psrHttpFactory = new HttpPsr7Factory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
 $psrResponse = $psrHttpFactory->createResponse($responseCodeIgniter);
 ```
 

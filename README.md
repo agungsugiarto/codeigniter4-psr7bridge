@@ -34,7 +34,7 @@ $ composer require nyholm/psr7
 ### Converting from IncomingRequest Objects to PSR-7
 
 The bridge provides an interface of a factory called
-``CodeIgniter\Psr7Bridge\Interfaces\HttpPsr7FactoryInterface``
+``Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface``
 that builds objects implementing PSR-7 interfaces from ``IncommingRequest`` objects.
 
 The following code snippet explains how to convert a ``CodeIgniter\HTTP\IncomingRequest``
@@ -45,7 +45,7 @@ to a ``Nyholm\Psr7\ServerRequest`` class implementing the
 <?php
 
 use CodeIgniter\Config\Services;
-use CodeIgniter\Psr7Bridge\HttpPsr7Factory;
+use Fluent\HttpMessageBridge\PsrHttpFactory;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
 $requestCodeIgniter = Services::request();
@@ -63,7 +63,7 @@ And now from a ``CodeIgniter\HTTP\Response`` to a
 <?php
 
 use CodeIgniter\HTTP\Response;
-use CodeIgniter\Psr7Bridge\HttpPsr7Factory;
+use Fluent\HttpMessageBridge\PsrHttpFactory;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
 $responseCodeIgniter = new Response(config('App'));

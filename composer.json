@@ -13,31 +13,34 @@
     ],
     "require": {
         "php": "^7.2",
-        "codeigniter4/framework": "^4.0",
+        "codeigniter4/framework": "^4.2",
         "psr/http-message": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "CodeIgniter\\Psr7Bridge\\": "src"
+            "Fluent\\HttpMessageBridge\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CodeIgniter\\Psr7Bridge\\Tests\\": "tests"
+            "Fluent\\HttpMessageBridge\\Tests\\": "tests"
         }
     },
     "require-dev": {
-        "nyholm/psr7": "^1.3"
+        "php-http/psr7-integration-tests": "^1.0",
+        "laminas/laminas-diactoros": "^2.17",
+        "nyholm/psr7": "^1.5"
     },
     "suggest": {
-        "nyholm/psr7": "For a super lightweight PSR-7/17 implementation"
+        "nyholm/psr7": "For a super lightweight PSR-7/17 implementation",
+        "": "laminas-diactoros is a PHP package containing implementations of the PSR-7 HTTP message interfaces and PSR-17 HTTP message factory interfaces."
     },
     "scripts": {
         "test": "phpunit --testdox --colors=always"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "1.x-dev"
         }
     }
 }

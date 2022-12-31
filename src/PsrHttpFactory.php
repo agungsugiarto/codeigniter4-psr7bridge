@@ -2,14 +2,16 @@
 
 namespace Fluent\HttpMessageBridge;
 
-use CodeIgniter\HTTP\DownloadResponse;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\HTTP\Response;
-use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ServerRequestFactoryInterface;
+use CodeIgniter\HTTP\DownloadResponse;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
+use Psr\Http\Message\ServerRequestFactoryInterface;
+use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class PsrHttpFactory implements HttpMessageFactoryInterface
 {
@@ -48,7 +50,7 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createRequest(Request $request)
+    public function createRequest(Request $request): ServerRequestInterface
     {
         $requestFactory = $this->serverRequestFactory->createServerRequest(
             $request->getMethod(),
@@ -56,7 +58,7 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
             $request->getServer()
         );
 
-        foreach ($request->getHeaders() as $name => $value) {
+        foreach ($request->headers() as $name => $value) {
             try {
                 $requestFactory = $requestFactory->withHeader($name, $value);
             } catch (\InvalidArgumentException $e) {
@@ -79,7 +81,7 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createResponse(Response $response)
+    public function createResponse(Response $response): ResponseInterface
     {
         $responseFactory = $this->responseFactory->createResponse(
             $response->getStatusCode(),

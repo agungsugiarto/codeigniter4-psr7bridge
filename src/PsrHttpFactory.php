@@ -16,22 +16,22 @@ use Psr\Http\Message\UploadedFileFactoryInterface;
 class PsrHttpFactory implements HttpMessageFactoryInterface
 {
     /**
-     * @var \PSR\Http\Message\ServerRequestFactoryInterface
+     * @var ServerRequestFactoryInterface
      */
     protected $serverRequestFactory;
 
     /**
-     * @var \Psr\Http\Message\StreamFactoryInterface
+     * @var StreamFactoryInterface
      */
     protected $streamFactory;
 
     /**
-     * @var \Psr\Http\Message\UploadedFileFactoryInterface
+     * @var UploadedFileFactoryInterface
      */
     protected $uploadedFileFactory;
 
     /**
-     * @var \Psr\Http\Message\ResponseFactoryInterface
+     * @var ResponseFactoryInterface
      */
     protected $responseFactory;
 

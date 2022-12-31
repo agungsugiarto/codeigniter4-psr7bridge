@@ -58,15 +58,17 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
             $request->getServer()
         );
 
-        foreach ($request->headers() as $name => $value) {
+        foreach ($request->headers() as $value) {
             try {
-                $requestFactory = $requestFactory->withHeader($name, $value);
+                $requestFactory = $requestFactory->withHeader($value->getName(), $value->getValue());
             } catch (\InvalidArgumentException $e) {
                 // ignore invalid header
             }
         }
 
-        $body = $this->streamFactory->createStreamFromResource($request->getBody());
+        $body = $request->getBody() === null
+            ? $this->streamFactory->createStreamFromResource('php://memory', 'wb+')
+            : $this->streamFactory->createStreamFromResource($request->getBody());
 
         $requestFactory = $requestFactory
             ->withBody($body)
@@ -123,9 +125,9 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
             }
         }
 
-        foreach ($headers as $name => $value) {
+        foreach ($headers as $value) {
             try {
-                $responseFactory = $responseFactory->withHeader($name, $value);
+                $responseFactory = $responseFactory->withHeader($value->getName(), $value->getValue());
             } catch (\InvalidArgumentException $e) {
                 // ignore invalid header
             }

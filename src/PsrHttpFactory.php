@@ -6,10 +6,10 @@ use CodeIgniter\HTTP\DownloadResponse;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\HTTP\Response;
 use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
-use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UploadedFileFactoryInterface;
 
 class PsrHttpFactory implements HttpMessageFactoryInterface
 {

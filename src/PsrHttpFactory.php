@@ -2,16 +2,17 @@
 
 namespace Fluent\HttpMessageBridge;
 
-use CodeIgniter\HTTP\DownloadResponse;
+use ReflectionClass;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\HTTP\Response;
-use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
+use CodeIgniter\HTTP\DownloadResponse;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
+use Psr\Http\Message\ServerRequestFactoryInterface;
+use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
 
 class PsrHttpFactory implements HttpMessageFactoryInterface
 {
@@ -90,28 +91,11 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
             $response->getReasonPhrase()
         );
 
-        if ($response instanceof DownloadResponse) {
-            $stream = $this->streamFactory->createStream(
-                $response->getBody()
-            );
-        } else {
-            $stream = $this->streamFactory->createStreamFromFile('php://temp', 'wb+');
-
-            if ($response instanceof DownloadResponse) {
-                ob_start(function ($buffer) use ($stream) {
-                    $stream->write($buffer);
-
-                    return '';
-                }, 1);
-
-                $response->send();
-                ob_end_clean();
-            } else {
-                $stream->write($response->getBody() ?? 'php://memory');
-            }
-        }
-
-        $responseFactory = $responseFactory->withBody($stream);
+        $responseFactory = $responseFactory->withBody(
+            $this->streamFactory->createStream(
+                $response->getBody() ?? 'php://memory'
+            )
+        );
 
         $headers = $response->headers();
         $cookies = $response->getCookies();

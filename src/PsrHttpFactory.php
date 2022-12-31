@@ -65,7 +65,7 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
                 // ignore invalid header
             }
         }
-
+        
         $body = $request->getBody() === null
             ? $this->streamFactory->createStreamFromResource('php://memory', 'wb+')
             : $this->streamFactory->createStreamFromResource($request->getBody());
@@ -107,11 +107,9 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
                 $response->send();
                 ob_end_clean();
             } else {
-                $stream->write($response->getBody());
+                $stream->write($response->getBody() ?? 'php://memory');
             }
         }
-
-        $responseFactory = $responseFactory->withBody($stream);
 
         $responseFactory = $responseFactory->withBody($stream);
 

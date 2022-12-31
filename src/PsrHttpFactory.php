@@ -2,17 +2,15 @@
 
 namespace Fluent\HttpMessageBridge;
 
-use ReflectionClass;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\HTTP\Response;
-use CodeIgniter\HTTP\DownloadResponse;
+use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
-use Psr\Http\Message\ServerRequestFactoryInterface;
-use Fluent\HttpMessageBridge\Interfaces\HttpMessageFactoryInterface;
 
 class PsrHttpFactory implements HttpMessageFactoryInterface
 {

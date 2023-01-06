@@ -52,7 +52,7 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
     public function createRequest(Request $request): ServerRequestInterface
     {
         $requestFactory = $this->serverRequestFactory->createServerRequest(
-            $request->getMethod(),
+            $request->getMethod(true),
             $request->getUri()->__toString(),
             $request->getServer()
         );
@@ -69,11 +69,17 @@ class PsrHttpFactory implements HttpMessageFactoryInterface
             ? $this->streamFactory->createStreamFromResource('php://memory', 'wb+')
             : $this->streamFactory->createStreamFromResource($request->getBody());
 
+        // Get the property query from the URI, it is not accessible.
+        $reflected = new \ReflectionClass($request->getUri());
+        $property = $reflected->getProperty('query');
+        $property->setAccessible(true);
+        $queryParams = $property->getValue($request->getUri());
+
         $requestFactory = $requestFactory
             ->withBody($body)
             ->withUploadedFiles($request->getFiles())
             ->withCookieParams($request->getCookie())
-            ->withQueryParams($request->getUri()->getSegments())
+            ->withQueryParams($queryParams)
             ->withParsedBody($request->getVar());
 
         return $requestFactory;
